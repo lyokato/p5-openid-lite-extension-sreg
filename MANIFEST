@@ -1,0 +1,6 @@
+Changes
+Makefile.PL
+MANIFEST
+README
+t/OpenID-Lite-Extension-SREG.t
+lib/OpenID/Lite/Extension/SREG.pm
