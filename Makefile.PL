@@ -1,12 +1,24 @@
-use 5.008008;
-use ExtUtils::MakeMaker;
-# See lib/ExtUtils/MakeMaker.pm for details of how to influence
-# the contents of the Makefile that is written.
-WriteMakefile(
-    NAME              => 'OpenID::Lite::Extension::SREG',
-    VERSION_FROM      => 'lib/OpenID/Lite/Extension/SREG.pm', # finds $VERSION
-    PREREQ_PM         => {}, # e.g., Module::Name => 1.1
-    ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
-      (ABSTRACT_FROM  => 'lib/OpenID/Lite/Extension/SREG.pm', # retrieve abstract from module
-       AUTHOR         => 'ryokato <ryokato@apple.com>') : ()),
+use strict;
+use warnings;
+
+use inc::Module::Install;
+
+name 'OpenID-Lite-Extension-SREG';
+all_from 'lib/OpenID/Lite/Extension/SREG.pm';
+
+requires(
+    'OpenID::Lite' => 0,
+    'List::MoreUtils' => 0,
 );
+
+tests('t/*.t t/*/*.t');
+
+#author_tests('xt');
+test_requires(
+    'Test::More' => 0,
+
+    #    'Test::Class' => 0,
+);
+
+auto_include;
+WriteAll;

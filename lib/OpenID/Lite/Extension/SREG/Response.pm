@@ -4,7 +4,6 @@ use Any::Moose;
 use List::MoreUtils qw(any none);
 
 extends 'OpenID::Lite::Extension::Response';
-with 'OpenID::Lite::Role::ErrorHandler';
 
 use OpenID::Lite::Extension::SREG qw(SREG_NS_1_0 SREG_NS_1_1 SREG_NS_ALIAS);
 

@@ -30,6 +30,7 @@ RP side
         $sreg_req = OpenID::Lite::Extension::SREG::Request->new;
         $sreg_req->request_field('nickname');
         $sreg_req->request_field('fullname');
+        $sreg_req->policy_url( $policy_url );
         $checkid_req->add_extension( $sreg_req );
 
         $your_app->redirect_to( $checkid_req->redirect_url( ... ) );
@@ -63,6 +64,7 @@ OP side
     if ( $res->is_positive_assertion ) {
 
         my $sreg_req = OpenID::Lite::Extension::SREG::Request->from_provider_response($res);
+        my $policy_url = $sreg_req->policy_url;
         if ( $sreg_res ) {
             my $sreg_data = {
                 nickname => $user->nickname,
@@ -84,11 +86,16 @@ OP side
             $message .= sprintf(q{RP requested %s},  join(', ', @$fields));
             $your_app->render( message => $message );
         }
-    }
+    }...
 
 =head1 DESCRIPTION
 
 This module is plugin for OpenID::Lite to acomplish SREG extension flow on easy way.
+
+http://openid.net/specs/openid-simple-registration-extension-1_0.html
+
+http://openid.net/specs/openid-simple-registration-extension-1_1-01.html
+
 
 =head1 SEE ALSO
 
